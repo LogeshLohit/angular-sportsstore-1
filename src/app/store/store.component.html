@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col bg-dark text-white" align="center">
+            <a class="navbar-brand">SPORTS STORE</a>
+            <cart-summary></cart-summary>
+        </div>
+    </div>
+    <div class="row text-white">
+        <div class="col-3 p-5">
+            <button class="btn btn-block btn-outline-primary" (click)="changeCategory()">Home</button>
+            <button class="btn btn-block btn-outline-primary" *ngFor="let categ of categories" [class.active]="categ == selectedCategory"
+                (click)="changeCategory(categ)">{{categ}}</button>
+        </div>
+        <div class="col-9 p-2">
+            <div *ngFor="let product of products" class="card text-dark m-1 p-1 bg-light">
+                <h4>
+                    {{product.name}}
+                    <span class="badge badge-pill badge-primary float-right">
+                        {{product.price | currency: "RS. " : "symbol" : "2.2-2"}}
+                    </span>
+                </h4>
+                <div class="card-text bg-white p-1">{{product.description}} 
+                    <button class="btn btn-success btn-sm float-right"
+                        (click)="addProductToCart(product)">
+                        Add To Cart
+                    </button></div>
+            </div>
+        </div>
+
+    </div>
+</div>
